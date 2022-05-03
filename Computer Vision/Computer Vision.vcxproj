@@ -19,21 +19,23 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ColorConversion.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Imgproc\ArithmaticOperations.h" />
+    <ClInclude Include="Imgproc\Blur.h" />
     <ClInclude Include="Imgproc\CUDA\Filters_cuda.h" />
     <ClInclude Include="Imgproc\CUDA\gpuImage.h" />
-    <ClInclude Include="Imgproc\EdgeDetection.h" />
-    <ClInclude Include="Imgproc\Filters.h" />
-    <ClInclude Include="Imgproc\ConvertColor.h" />
+    <ClInclude Include="Imgproc\Canny.h" />
+    <ClInclude Include="Imgproc\Convolution.h" />
+    <ClInclude Include="Imgproc\ColorConversion.h" />
     <ClInclude Include="Imgproc\ImageOperations.h" />
+    <ClInclude Include="Imgproc\MathConstants.h" />
     <ClInclude Include="Imgproc\Ransac.h" />
     <ClInclude Include="Imgproc\DrawShapes.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Video\Video.h" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\House.jpg" />
     <Content Include="Resources\Lena.png" />
     <Content Include="Resources\Lena_gray.png" />
     <Content Include="Resources\LinuxLogo.jpg" />
@@ -83,10 +85,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir);</IncludePath>
+    <ExternalIncludePath>$(ExternalIncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir);</IncludePath>
+    <ExternalIncludePath>$(ExternalIncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -104,7 +108,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);curand.lib;cublas.lib;cublasLt.lib;</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(_ZVcpkgCurrentInstalledDir)$(_ZVcpkgConfigSubdir)lib;$(_ZVcpkgCurrentInstalledDir)$(_ZVcpkgConfigSubdir)lib\manual-link;$(CUDA_PATH_V11_2)\lib\x64\;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(CUDA_PATH_V11_3)\lib\x64\;</AdditionalLibraryDirectories>
     </Link>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
@@ -131,7 +135,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);curand.lib;cublas.lib;cublasLt.lib;</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(_ZVcpkgCurrentInstalledDir)$(_ZVcpkgConfigSubdir)lib;$(_ZVcpkgCurrentInstalledDir)$(_ZVcpkgConfigSubdir)lib\manual-link;$(CUDA_PATH_V11_2)\lib\x64\;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(CUDA_PATH_V11_3)\lib\x64\;</AdditionalLibraryDirectories>
     </Link>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
@@ -143,4 +147,12 @@
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 11.3.targets" />
   </ImportGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnabled>true</VcpkgEnabled>
+    <VcpkgManifestInstall>true</VcpkgManifestInstall>
+    <VcpkgAutoLink>true</VcpkgAutoLink>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <VcpkgTriplet />
+  </PropertyGroup>
 </Project>

@@ -80,10 +80,9 @@ namespace cv
     * \param radius Length of the radius of circle
     * \param color Color of the outline of the circle drawn in the form (r,g,b)
     */
-    void circle_test(Image& img, std::array<int, 2> center, int radius, std::array<uint8_t, 3> color)
+    void circle(Image& img, std::array<int, 2> center, int radius, std::array<uint8_t, 3> color)
     {
         // center[0] = h, center[1] = k
-        constexpr double pi = 3.14159265;
         int x = 0, y = radius, p = 1-radius;
 
         draw_circle_point(img, center, x, y, color);

@@ -1,12 +1,10 @@
 ﻿#pragma once
 
-#include <opencv2/imgcodecs.hpp>
-
 #include "Image.h"
 
 namespace cv
 {
-    void shift_image(Image& img, Image& dst, int channel, uint8_t value)
+    void shiftImage(Image& img, Image& dst, int channel, uint8_t value)
     {
         dst = img;
         for(uint64_t i = channel; i < img.size(); i += img.channels())

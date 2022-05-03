@@ -2,8 +2,8 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 
 #include "Image.h"
-#include "stb_image.h"
-#include "stb_image_write.h"
+#include "3rdParty/stb/stb_image.h"
+#include "3rdParty/stb/stb_image_write.h"
 
 #include <immintrin.h>
 

@@ -1,19 +1,17 @@
 ﻿#include <iostream>
 
 #include "Image.h"
-#include "Imgproc/ConvertColor.h"
-#include "Imgproc/Filters.h"
+#include "Imgproc/ColorConversion.h"
+#include "Imgproc/Convolution.h"
 #include "Timer.h"
 
 #include "Imgproc/ArithmaticOperations.h"
+#include "Imgproc/Blur.h"
 #include "Imgproc/ImageOperations.h"
 
-#include "Imgproc/EdgeDetection.h"
+#include "Imgproc/Canny.h"
 
 #include "Imgproc/DrawShapes.h"
-
-#include "opencv2/imgproc.hpp"
-#include "opencv2/highgui.hpp"
 
 int main()
 {
@@ -42,9 +40,11 @@ int main()
                          1/9.0, 1/9.0, 1/9.0,
                          1/9.0, 1/9.0, 1/9.0};
 
-    Image test1("Resources/Lena.png");
-    cv::circle_test(test1, {100, 100}, 4, {255, 0, 0});
-    test1.write("Resources/Circles.png");
+    Image test1("Resources/Lena.png"), test2;
+    cv::cvtColor(test1, test1, ColorConversionCodes::COLOR_RGB2GRAY);
+    cv::gaussianBlur(test1, test1, 5, 5, 1);
+    cv::sobel(test1, test2);
+    test2.write("Resources/Sobel.png");
 
     // cv::Mat mat = cv::imread("Resources/Lena.png");
     // cv::circle(mat, {100, 100}, 4, {0, 0, 255});
