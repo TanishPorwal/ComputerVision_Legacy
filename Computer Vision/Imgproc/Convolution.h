@@ -2,7 +2,6 @@
 
 #include "Image.h"
 
-
 namespace cv
 {
     /**

@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Imgproc\CUDA\ColorConversion.cu" />
+    <CudaCompile Include="Imgproc\CUDA\Convolution.cu" />
     <ClCompile Include="Video\Video.cpp" />
     <CudaCompile Include="Imgproc\CUDA\Filter.cu" />
     <ClCompile Include="Imgproc\CUDA\gpuImage.cpp" />
@@ -20,7 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Image.h" />
-    <ClInclude Include="Imgproc\ArithmaticOperations.h" />
+    <ClInclude Include="Imgproc\ArithmeticOperations.h" />
     <ClInclude Include="Imgproc\Blur.h" />
     <ClInclude Include="Imgproc\CUDA\Filters_cuda.h" />
     <ClInclude Include="Imgproc\CUDA\gpuImage.h" />

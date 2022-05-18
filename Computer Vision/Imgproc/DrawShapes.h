@@ -70,6 +70,37 @@ namespace cv
         }
     }
 
+    // Helper function to draw the line points 
+    void draw_line_point(Image& img, std::array<int, 2> center, int x, int y, std::array<uint8_t, 3> color);
+    
+    /**
+     * \brief Draws a line from a point to another
+     * \param img Input Image
+     * \param p1 The first point/coordinate in the form (x,y)
+     * \param p2 The second point/coordinate in the form (x,y)
+     * \param color Color of the line specified in the form (r,g,b)
+     */
+    void line_optimized(Image& img, std::array<int, 2> p1, std::array<int, 2> p2, std::array<uint8_t, 3> color)
+    {
+        // p1[0] = x1, p1[1] = y1
+        // p2[0] = x2, p2[1] = y2
+        int delta_x = p2[0] - p1[0];
+        signed char const ix = (delta_x > 0) - (delta_x < 0);
+        delta_x = std::abs(delta_x) << 1;
+
+        int delta_y(p2[1] - p1[1]);
+        // if y1 == y2, then it does not matter what we set here
+        signed char const iy((delta_y > 0) - (delta_y < 0));
+        delta_y = std::abs(delta_y) << 1;
+
+    }
+
+    void draw_line_point(Image& img, std::array<int, 2> center, int x, int y, std::array<uint8_t, 3> color)
+    {
+        
+    }
+    
+
     // Helper function to draw the circle points 
     void draw_circle_point(Image& img, std::array<int, 2> center, int x, int y, std::array<uint8_t, 3> color);
 
@@ -82,7 +113,6 @@ namespace cv
     */
     void circle(Image& img, std::array<int, 2> center, int radius, std::array<uint8_t, 3> color)
     {
-        // center[0] = h, center[1] = k
         int x = 0, y = radius, p = 1-radius;
 
         draw_circle_point(img, center, x, y, color);

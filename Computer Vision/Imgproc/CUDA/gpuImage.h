@@ -3,8 +3,8 @@
 
 #include "Image.h"
 
-template<size_t channels>
-class gpuImage
+// Image is assumed to be 3 channels
+class gpuImage 
 {
 public:
     gpuImage() = default;
@@ -19,15 +19,9 @@ public:
 
     gpuImage& operator=(Image& src);
     gpuImage& operator=(Image&& src) noexcept;
-    gpuImage& operator=(gpuImage& src);
+    gpuImage& operator=(const gpuImage& src);
     gpuImage& operator=(gpuImage&& src) noexcept;
 
 private:
-    struct parameters
-    {
-        uint8_t r, g, b;
-    };
-
-private:
-    parameters* m_Data = nullptr;
+    uint8_t* m_Data = nullptr;
 };
