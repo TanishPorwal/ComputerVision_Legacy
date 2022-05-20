@@ -3,6 +3,9 @@
 #include <algorithm>
 
 #include "Image.h"
+#if defined(_MSC_VER)
+#include "MathConstants.h"
+#endif
 
 enum class ColorConversionCodes
 {

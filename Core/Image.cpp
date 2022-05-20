@@ -5,6 +5,10 @@
 #include "stb/stb_image.h"
 #include "stb/stb_image_write.h"
 
+#if defined(_MSC_VER)
+#include "Imgproc/MathConstants.h"
+#endif
+
 Image::Image(const char* filename)
 {
     if(read(filename))

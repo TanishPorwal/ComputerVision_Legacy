@@ -7,7 +7,12 @@
 
 struct Timer
 {
+#if defined(__GNUC__) || defined(__GNUG__)
     std::chrono::_V2::system_clock::time_point start, end;
+#elif defined(_MSC_VER)
+    std::chrono::time_point<std::chrono::steady_clock> start, end;
+#endif
+    
     std::chrono::duration<float> duration;
     Timer() : duration(0)
     {
