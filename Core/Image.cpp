@@ -12,7 +12,10 @@
 Image::Image(const char* filename)
 {
     if(read(filename))
+    {
+        std::cout << "Successfully Opened " << filename << "\n";
         m_Size = m_Width * m_Height * m_Channels;
+    }
     else std::cout << "Could not open" << filename << ".\n" << "Reason: " << stbi_failure_reason() << "\n";
 }
 

@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include <immintrin.h>
+
 #include <algorithm>
 
 #include "Image.h"
@@ -187,11 +189,75 @@ namespace cv
                 src.at(i+2) = gray;
             }
     }
+
+    /* _in and _out must be 16-byte aligned */
+    void rgb_to_bgrx_sse(unsigned w, const void *_in, void *_out)
+    {
+        const auto *in_vec = static_cast<const __m128i *>(_in);
+        auto *out_vec = static_cast<__m128i *>(_out);
+
+        w /= 16;
+
+        while (w-- > 0) {
+            /*             0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
+             * in_vec[0]   Ra Ga Ba Rb Gb Bb Rc Gc Bc Rd Gd Bd Re Ge Be Rf
+             * in_vec[1]   Gf Bf Rg Gg Bg Rh Gh Bh Ri Gi Bi Rj Gj Bj Rk Gk
+             * in_vec[2]   Bk Rl Gl Bl Rm Gm Bm Rn Gn Bn Ro Go Bo Rp Gp Bp
+             */
+            __m128i in1, in2, in3;
+            __m128i out;
+
+            in1 = in_vec[0];
+
+            out = _mm_shuffle_epi8(in1,
+                                   _mm_set_epi8(0xff, 9, 10, 11, 0xff, 6, 7, 8, 0xff, 3, 4, 5, 0xff, 0, 1, 2));
+            out = _mm_or_si128(out,
+                               _mm_set_epi8(0xff, 0, 0, 0, 0xff, 0, 0, 0, 0xff, 0, 0, 0, 0xff, 0, 0, 0));
+            out_vec[0] = out;
+
+            in2 = in_vec[1];
+
+            in1 = _mm_and_si128(in1,
+                                _mm_set_epi8(0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0, 0, 0, 0, 0, 0, 0, 0));
+            out = _mm_and_si128(in2,
+                                _mm_set_epi8(0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff));
+            out = _mm_or_si128(out, in1);
+            out = _mm_shuffle_epi8(out,
+                                   _mm_set_epi8(0xff, 5, 6, 7, 0xff, 2, 3, 4, 0xff, 15, 0, 1, 0xff, 12, 13, 14));
+            out = _mm_or_si128(out,
+                               _mm_set_epi8(0xff, 0, 0, 0, 0xff, 0, 0, 0, 0xff, 0, 0, 0, 0xff, 0, 0, 0));
+            out_vec[1] = out;
+
+            in3 = in_vec[2];
+            in_vec += 3;
+
+            in2 = _mm_and_si128(in2,
+                                _mm_set_epi8(0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0, 0, 0, 0, 0, 0, 0, 0));
+            out = _mm_and_si128(in3,
+                                _mm_set_epi8(0, 0, 0, 0, 0, 0, 0, 0, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff));
+            out = _mm_or_si128(out, in2);
+            out = _mm_shuffle_epi8(out,
+                                   _mm_set_epi8(0xff, 1, 2, 3, 0xff, 14, 15, 0, 0xff, 11, 12, 13, 0xff, 8, 9, 10));
+            out = _mm_or_si128(out,
+                               _mm_set_epi8(0xff, 0, 0, 0, 0xff, 0, 0, 0, 0xff, 0, 0, 0, 0xff, 0, 0, 0));
+            out_vec[2] = out;
+
+            out = _mm_shuffle_epi8(in3,
+                                   _mm_set_epi8(0xff, 13, 14, 15, 0xff, 10, 11, 12, 0xff, 7, 8, 9, 0xff, 4, 5, 6));
+            out = _mm_or_si128(out,
+                               _mm_set_epi8(0xff, 0, 0, 0, 0xff, 0, 0, 0, 0xff, 0, 0, 0, 0xff, 0, 0, 0));
+            out_vec[3] = out;
+
+            out_vec += 4;
+        }
+    }
     
     Image& cvtColor(Image& src, Image& dst, ColorConversionCodes conversion_codes)
     {
         switch(conversion_codes) {
-        case ColorConversionCodes::COLOR_RGB2RGBA: break;
+        case ColorConversionCodes::COLOR_RGB2RGBA:
+            rgb_to_bgrx_sse(src.size(), &src.at(0), &dst.at(0));
+            break;
         case ColorConversionCodes::COLOR_RGBA2RGB: break;
         case ColorConversionCodes::COLOR_RGB2GRAY:
             cv::RGB2GRAY(src, dst);

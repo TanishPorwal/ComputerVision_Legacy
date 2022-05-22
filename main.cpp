@@ -11,40 +11,53 @@
 #include "Imgproc/ImageOperations.h"
 
 #include "Imgproc/Canny.h"
+#include "Window.h"
 
 #include "Imgproc/DrawShapes.h"
 
+#include "GLFW/gl3w.h"
+#include "GLFW/glfw3.h"
+
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_glfw.h"
+#include "imgui/imgui_impl_opengl3.h"
+#include <GLFW/gl3w.h>
+#include <GLFW/glfw3.h>
+
+
 int main()
 {
+//    double emboss[9] = { -2,  -1,  0,
+//                         -1,   1,  1,
+//                          0,   1,  2};
+//
+//    double sharpen[9] = { 0, -1,  0,
+//                         -1,  5, -1,
+//                          0, -1,  0};
+//
+//    double raised[9] = {  0,  0, -2,
+//                          0,  2,  0,
+//                          1,  0,  0};
+//
+//    double edge_detect[9] = {  0, -1,  0,
+//                              -1,  4, -1,
+//                               0, -1,  0};
+//
+//    double outline[9] = { -1/3.0, -1/3.0, -1/3.0,
+//                          -1/3.0,  8/3.0, -1/3.0,
+//                          -1/3.0, -1/3.0, -1/3.0};
+//
+//    double denoise[9] = {1/9.0, 1/9.0, 1/9.0,
+//                         1/9.0, 1/9.0, 1/9.0,
+//                         1/9.0, 1/9.0, 1/9.0};
+
     Timer timer;
-    double emboss[9] = { -2,  -1,  0,
-                         -1,   1,  1,
-                          0,   1,  2};
-
-    double sharpen[9] = { 0, -1,  0,
-                         -1,  5, -1,
-                          0, -1,  0};
-
-    double raised[9] = {  0,  0, -2,
-                          0,  2,  0,
-                          1,  0,  0};
-
-    double edge_detect[9] = {  0, -1,  0,
-                              -1,  4, -1,
-                               0, -1,  0};
-
-    double outline[9] = { -1/3.0, -1/3.0, -1/3.0,
-                          -1/3.0,  8/3.0, -1/3.0,
-                          -1/3.0, -1/3.0, -1/3.0};
-
-    double denoise[9] = {1/9.0, 1/9.0, 1/9.0,
-                         1/9.0, 1/9.0, 1/9.0,
-                         1/9.0, 1/9.0, 1/9.0};
-
     Image test1("Resources/WindowsLogo.jpg"), test2("Resources/LinuxLogo.jpg");
-    // Image test1(500, 500, 3, {0, 0, 0});
-    cv::line(test1, {100, 100}, {100, 800}, {255, 0, 0});
-    test1.write("Resources/Line124.jpg");
+//  Image test1(500, 500, 3, {0, 0, 0});
+    Window window;
+    window.setWindowName("Test Window");
+    window.showWindow(test1);
+
     // cv::cvtColor(test1, test1, ColorConversionCodes::COLOR_RGB2GRAY);
     // cv::gaussianBlur(test1, test1, 5, 5, 1);
     // cv::sobel(test1, test2);
