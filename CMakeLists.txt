@@ -8,10 +8,11 @@ project ("CV")
 # Include sub-projects.
 add_subdirectory ("Core")
 add_subdirectory("Imgproc")
+add_subdirectory("SIMD")
 
 add_executable(${PROJECT_NAME} main.cpp)
 
-target_link_libraries(${PROJECT_NAME} cv::core cv::imgproc)
+target_link_libraries(${PROJECT_NAME} cv::core cv::imgproc cv::simd)
 if (UNIX)
 target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/3rdParty/GLFW/lib/libgl3w_d.a)
 target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/3rdParty/GLFW/lib/libglfw3_d.a)
@@ -21,8 +22,10 @@ endif (UNIX)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/3rdParty)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/Core/include)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/SIMD/include)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse4.1")
 
 if(NOT MSVC)
   set(PThreadLib -pthread)

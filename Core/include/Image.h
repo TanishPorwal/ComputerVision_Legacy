@@ -46,6 +46,7 @@ public:
     int channels() const;
 
     void allocate(int width, int height, int channels);
+    void simdAllocate(int width, int height, int channels, size_t alignment);
 
 private:
     uint8_t* m_Data = nullptr;

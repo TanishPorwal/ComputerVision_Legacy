@@ -15,15 +15,7 @@
 
 #include "Imgproc/DrawShapes.h"
 
-#include "GLFW/gl3w.h"
-#include "GLFW/glfw3.h"
-
-#include "imgui/imgui.h"
-#include "imgui/imgui_impl_glfw.h"
-#include "imgui/imgui_impl_opengl3.h"
-#include <GLFW/gl3w.h>
-#include <GLFW/glfw3.h>
-
+#include "SimdAllocator.h"
 
 int main()
 {
@@ -52,26 +44,18 @@ int main()
 //                         1/9.0, 1/9.0, 1/9.0};
 
     Timer timer;
-    Image test1("Resources/WindowsLogo.jpg"), test2("Resources/LinuxLogo.jpg");
-//  Image test1(500, 500, 3, {0, 0, 0});
-    Window window;
-    window.setWindowName("Test Window");
-    window.showWindow(test1);
+    Image test1("Resources/Lena.png"), test2;
+    std::cout << "Alignment Value: " << CV_SIMD_ALIGN << "\n";
+    std::cout << "Alignment: " << Simd::GetAlignment() << "\n";
+//    auto a = static_cast<uint8_t*>(Simd::SimdAllocator<uint8_t>::Allocate(test1.size(), CV_SIMD_ALIGN)), b = static_cast<uint8_t*>(Simd::SimdAllocator<uint8_t>::Allocate(test1.size(), CV_SIMD_ALIGN));
+//    Simd::Free(a);
+//    Simd::Free(b);
+    //    cv::CvtColor(test1, test1, ColorConversionCodes::COLOR_RGB2RGBA);
 
-    // cv::cvtColor(test1, test1, ColorConversionCodes::COLOR_RGB2GRAY);
-    // cv::gaussianBlur(test1, test1, 5, 5, 1);
-    // cv::sobel(test1, test2);
-    // test1.write("Resources/Line.png");
-    // test2.write("Resources/Add.png");
+//    bool b = ((unsigned long)a & CV_SIMD_ALIGN) == 0;
+//    std::cout << std::boolalpha << b << "\n";
 
-    // cv::Mat mat = cv::imread("Resources/Lena.png");
-    // cv::circle(mat, {100, 100}, 4, {0, 0, 255});
-    // cv::imwrite("Resources/Circles_opencv.png", mat);
 
-    // cv::gaussianBlur(test1, test1, 3, 3, 1);
-    // cv::filter2D(test1, test2, edge_detect, 3, 3);
-    // test2.write("Resources/Test_Edge_Detect.png");
-    // cv::bitwise_and(test1, test1, test1);
-    // test1.write("Resources/Bitwise_And.png");
+
     return 0;
 }

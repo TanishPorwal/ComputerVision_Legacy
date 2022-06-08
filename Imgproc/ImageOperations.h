@@ -4,21 +4,21 @@
 
 namespace cv
 {
-    void shiftImage(Image& img, Image& dst, int channel, uint8_t value)
+    void ShiftImage(Image& img, Image& dst, int channel, uint8_t value)
     {
         dst = img;
         for(uint64_t i = channel; i < img.size(); i += img.channels())
             BYTE_BOUND(dst.at(i) += value);
     }
 
-    void threshold(Image& src, Image& dst, uint8_t value)
+    void Threshold(Image& src, Image& dst, uint8_t value)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || src.channels() != dst.channels())
             dst.allocate(src.width(), src.height(), src.channels());
         for(uint32_t i = 0; i < src.size(); i++) dst.at(i) = (src.at(i) < value) ? 0 : 255;
     }
 
-    void linearTransform(Image& src, Image& dst, double dFa, double dFb)
+    void LinearTransform(Image& src, Image& dst, double dFa, double dFb)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || src.channels() != dst.channels())
             dst.allocate(src.width(), src.height(), src.channels());
@@ -30,7 +30,7 @@ namespace cv
         }
     }
 
-    void logTransform(Image& src, Image& dst, double dC)
+    void LogTransform(Image& src, Image& dst, double dC)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || src.channels() != dst.channels())
             dst.allocate(src.width(), src.height(), src.channels());
@@ -42,7 +42,7 @@ namespace cv
         }
     }
 
-    void gammaTransform(Image& src, Image& dst, double gamma, double comp)
+    void GammaTransform(Image& src, Image& dst, double gamma, double comp)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || src.channels() != dst.channels())
             dst.allocate(src.width(), src.height(), src.channels());
@@ -56,7 +56,7 @@ namespace cv
         }
     }
 
-    void horizontalMirror(Image& src, Image& dst)
+    void HorizontalMirror(Image& src, Image& dst)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || src.channels() != dst.channels())
             dst.allocate(src.width(), src.height(), src.channels());
@@ -66,7 +66,7 @@ namespace cv
                     dst.at((i * src.width() + j) * src.channels() + k) = src.at(((i + 1) * src.width() - j) * src.channels() + k);
     }
 
-    void verticalMirror(Image& src, Image& dst)
+    void VerticalMirror(Image& src, Image& dst)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || src.channels() != dst.channels())
             dst.allocate(src.width(), src.height(), src.channels());
@@ -77,7 +77,7 @@ namespace cv
                     dst.at((i * src.width() + j) * src.channels() + k) = src.at(((src.height() - i - 1) * src.width() + j) * src.channels() + k);
     }
 
-    void sepia(Image& src, Image& dst)
+    void Sepia(Image& src, Image& dst)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || src.channels() != dst.channels())
             dst.allocate(src.width(), src.height(), src.channels());
@@ -89,7 +89,8 @@ namespace cv
         }
     }
 
-    void extractChannel(Image& src, Image& dst, int channel)
+    // @TODO doesn't work as intended, fix it
+    void ExtractChannel(Image& src, Image& dst, int channel)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || dst.channels() != 1)
             dst.allocate(src.width(), src.height(), 1);

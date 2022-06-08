@@ -13,7 +13,7 @@ namespace cv
      * \param gamma .
      * \param dst Output Image
      */
-    void addWeighted(Image& src1, double alpha, Image& src2, double beta, double gamma, Image& dst)
+    void AddWeighted(Image& src1, double alpha, Image& src2, double beta, double gamma, Image& dst)
     {
         if(src1.height() != dst.height() || src1.width() != dst.width() || src1.channels() != dst.channels())
             dst.allocate(src1.width(), src1.height(), src1.channels());
@@ -22,7 +22,7 @@ namespace cv
             dst.at(i) = static_cast<uint8_t>(BYTE_BOUND(alpha * src1.at(i) + beta * src2.at(i) + gamma));
     }
 
-    void add(Image& src1, Image& src2, Image& dst)
+    void Add(Image& src1, Image& src2, Image& dst)
     {
         if(src1.height() != dst.height() || src1.width() != dst.width() || src1.channels() != dst.channels())
             dst.allocate(src1.width(), src1.height(), src1.channels());
@@ -31,7 +31,7 @@ namespace cv
             dst.at(i) = static_cast<uint8_t>(BYTE_BOUND(src1.at(i) + src2.at(i)));
     }
 
-    void subtract(Image& src1, Image& src2, Image& dst)
+    void Subtract(Image& src1, Image& src2, Image& dst)
     {
         if(src1.height() != dst.height() || src1.width() != dst.width() || src1.channels() != dst.channels())
             dst.allocate(src1.width(), src1.height(), src1.channels());
@@ -47,7 +47,7 @@ namespace cv
      * \param src Input Image
      * \param dst Output Image
      */
-    void bitwise_not(Image& src, Image& dst)
+    void Bitwise_not(Image& src, Image& dst)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || src.channels() != dst.channels())
             dst.allocate(src.width(), src.height(), src.channels());
@@ -55,7 +55,7 @@ namespace cv
             dst.at(i) = ~src.at(i);
     }
 
-    void bitwise_and(Image& src1, Image& src2, Image& dst)
+    void Bitwise_and(Image& src1, Image& src2, Image& dst)
     {
         if(src1.height() != dst.height() || src1.width() != dst.width() || src1.channels() != dst.channels())
             dst.allocate(src1.width(), src1.height(), src1.channels());
@@ -64,7 +64,7 @@ namespace cv
             dst.at(i) = src1.at(i) & src2.at(i);
     }
 
-    void bitwise_or(Image& src1, Image& src2, Image& dst)
+    void Bitwise_or(Image& src1, Image& src2, Image& dst)
     {
         if(src1.height() != dst.height() || src1.width() != dst.width() || src1.channels() != dst.channels())
             dst.allocate(src1.width(), src1.height(), src1.channels());
@@ -73,7 +73,7 @@ namespace cv
             dst.at(i) = src1.at(i) | src2.at(i);
     }
 
-    void bitwise_xor(Image& src1, Image& src2, Image& dst)
+    void Bitwise_xor(Image& src1, Image& src2, Image& dst)
     {
         if(src1.height() != dst.height() || src1.width() != dst.width() || src1.channels() != dst.channels())
             dst.allocate(src1.width(), src1.height(), src1.channels());

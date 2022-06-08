@@ -1,0 +1,6 @@
+The name of the functions inside namespace or global functions begin with capital letter and the subsequent names also start with capital letter
+The name of the functions inside class or struct begins with small letter and the subsequent names also start with capital letter
+The name of variable in class or struct start with m_X, where X is a capital letter and the subsequent names also start with capital letter
+Avoid global variables
+Set the constant variables to constexpr
+All the functions have to be in the cv namespace except those in 'SIMD' folder

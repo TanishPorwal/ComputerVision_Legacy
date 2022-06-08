@@ -252,7 +252,7 @@ namespace cv
         }
     }
     
-    Image& cvtColor(Image& src, Image& dst, ColorConversionCodes conversion_codes)
+    Image& CvtColor(Image& src, Image& dst, ColorConversionCodes conversion_codes)
     {
         switch(conversion_codes) {
         case ColorConversionCodes::COLOR_RGB2RGBA:

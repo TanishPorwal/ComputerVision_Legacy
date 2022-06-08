@@ -1,6 +1,6 @@
 project(cv_core)
 
-add_library(${PROJECT_NAME} Image.cpp Window.cpp include/Image.h include/Window.h include/CpuFeatures.h)
+add_library(${PROJECT_NAME} Image.cpp Window.cpp include/Image.h include/Window.h)
 add_library(cv::core ALIAS ${PROJECT_NAME})
 
 if (UNIX)
@@ -21,3 +21,4 @@ endif (UNIX)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/3rdParty)
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/SIMD/include)

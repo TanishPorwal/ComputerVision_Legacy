@@ -14,7 +14,7 @@ namespace cv
      * \param p2 The second point/coordinate in the form (x,y)
      * \param color Color of the line specified in the form (r,g,b)
      */
-    void line(Image& img, const std::array<int, 2> p1, const std::array<int, 2> p2, const std::array<uint8_t, 3> color)
+    void Line(Image& img, const std::array<int, 2> p1, const std::array<int, 2> p2, const std::array<uint8_t, 3> color)
     {
         // p1[0] = x1, p1[1] = y1
         // p2[0] = x2, p2[1] = y2
@@ -88,7 +88,7 @@ namespace cv
      * \param p2 The second point/coordinate in the form (x,y)
      * \param color Color of the line specified in the form (r,g,b)
      */
-    void line_optimized(Image& img, std::array<int, 2> p1, std::array<int, 2> p2, std::array<uint8_t, 3> color)
+    void Line_Optimized(Image& img, std::array<int, 2> p1, std::array<int, 2> p2, std::array<uint8_t, 3> color)
     {
         // p1[0] = x1, p1[1] = y1
         // p2[0] = x2, p2[1] = y2
@@ -119,7 +119,7 @@ namespace cv
     * \param radius Length of the radius of circle
     * \param color Color of the outline of the circle drawn in the form (r,g,b)
     */
-    void circle(Image& img, std::array<int, 2> center, int radius, std::array<uint8_t, 3> color)
+    void Circle(Image& img, std::array<int, 2> center, int radius, std::array<uint8_t, 3> color)
     {
         int x = 0, y = radius, p = 1-radius;
 

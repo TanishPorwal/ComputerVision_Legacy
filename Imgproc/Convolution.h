@@ -13,7 +13,7 @@ namespace cv
      * \param kernel_width Width of the kernel
      * \param kernel_height Height of the Kernel
      */
-    void convolve2D(Image& src, Image& dst, uint8_t channel , double* kernel, int kernel_width, int kernel_height)
+    void Convolve2D(Image& src, Image& dst, uint8_t channel , double* kernel, int kernel_width, int kernel_height)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || src.channels() != dst.channels())
             dst.allocate(src.width(), src.height(), src.channels());
@@ -55,7 +55,7 @@ namespace cv
      * \param kernel_width Width of the kernel
      * \param kernel_height Height of the Kernel
      */
-    void convolve2D(Image& src, Image& dst, double* kernel, int kernel_width, int kernel_height)
+    void Convolve2D(Image& src, Image& dst, double* kernel, int kernel_width, int kernel_height)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || src.channels() != dst.channels())
             dst.allocate(src.width(), src.height(), src.channels());
@@ -91,8 +91,8 @@ namespace cv
         }
     }
 
-    // TODO Optimization
-    void convolve2D_test(Image& src, Image& dst, double* kernel, int kernel_width, int kernel_height)
+    // TODO Optimization, doesn't work yet
+    void Convolve2D_test(Image& src, Image& dst, double* kernel, int kernel_width, int kernel_height)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || src.channels() != dst.channels())
             dst.allocate(src.width(), src.height(), src.channels());
@@ -123,7 +123,7 @@ namespace cv
         }
     }
     
-    void convolve2DFast(Image& src, Image& dst, double* kernel, int kernel_width, int kernel_height)
+    void Convolve2DFast(Image& src, Image& dst, double* kernel, int kernel_width, int kernel_height)
     {
         
     }

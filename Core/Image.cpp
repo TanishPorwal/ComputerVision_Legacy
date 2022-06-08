@@ -9,6 +9,8 @@
 #include "Imgproc/MathConstants.h"
 #endif
 
+#include "SimdAllocator.h"
+
 Image::Image(const char* filename)
 {
     if(read(filename))
@@ -174,7 +176,6 @@ int Image::channels() const
     return m_Channels;
 }
 
-
 void Image::allocate(int width, int height, int channels)
 {
     m_Width = width;
@@ -183,4 +184,17 @@ void Image::allocate(int width, int height, int channels)
     m_Size = width*height*channels;
     delete m_Data;
     m_Data = new uint8_t[m_Size];
+}
+
+void Image::simdAllocate(int width, int height, int channels, size_t alignment)
+{
+    if(m_Data == nullptr)
+    {
+        m_Width = width;
+        m_Height = height;
+        m_Channels = channels;
+        m_Size = width * height * channels;
+//        m_Data = static_cast<uint8_t*>(Simd::SimdAllocator<uint8_t>(m_Size, CV_SIMD_ALIGN));
+        m_Data = static_cast<uint8_t*>(Simd::SimdAllocator<uint8_t>::Allocate(m_Size, CV_SIMD_ALIGN));
+    }
 }
