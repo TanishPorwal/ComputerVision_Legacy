@@ -195,12 +195,10 @@ typedef unsigned __int64  uint64_t;
 #define CV_SIMD_ALIGN 4
 #endif
 
-#define SIMD_LOG_ENABLE
+#define CV_SIMD_LOG_ENABLE
 
-#define SIMD_ALLOCATE_ERROR_MESSAGE
+#define CV_SIMD_ALLOCATE_ERROR_MESSAGE
 
-#define SIMD_ALLOCATE_ASSERT
+#define CV_SIMD_ALLOCATE_ASSERT
 
-#define SIMD_NO_MANS_LAND 64
-
-#define SIMD_NEON_ASM_DISABLE
+#define CV_SIMD_NO_MANS_LAND 64

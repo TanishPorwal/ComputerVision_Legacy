@@ -9,9 +9,9 @@ namespace cv
 {
     /**
      * \brief Draws a line from a point to another
-     * \param img Input Image
-     * \param p1 The first point/coordinate in the form (x,y)
-     * \param p2 The second point/coordinate in the form (x,y)
+     * \param img   Input Image
+     * \param p1    Coordinate of the first point in the form (x,y)
+     * \param p2    Coordinate of the second point in the form (x,y)
      * \param color Color of the line specified in the form (r,g,b)
      */
     void Line(Image& img, const std::array<int, 2> p1, const std::array<int, 2> p2, const std::array<uint8_t, 3> color)
@@ -175,5 +175,21 @@ namespace cv
         img.at(((center[1] - x) * img.width() + center[0] - y) * img.channels())   = color[0];
         img.at(((center[1] - x) * img.width() + center[0] - y) * img.channels()+1) = color[1];
         img.at(((center[1] - x) * img.width() + center[0] - y) * img.channels()+2) = color[2];
+    }
+
+    // @TODO Implement the method to draw a rectangle like OpenCV
+    /**
+     * \brief Draws a Rectangle from the given coordinates
+     * \param img   Input Image
+     * \param p1    Coordinate of the first point in the form (x,y)
+     * \param p2    Coordinate of the second point in the form (x,y)
+     * \param color Color of the line specified in the form (r,g,b)
+     */
+    void Rectangle(Image& img, const std::array<int, 2> p1, const std::array<int, 2> p2, const std::array<int, 2> p3, const std::array<int, 2> p4, const std::array<uint8_t, 3> color)
+    {
+        Line(img, p1, p2, color);
+        Line(img, p2, p3, color);
+        Line(img, p3, p4, color);
+        Line(img, p4, p1, color);
     }
 }

@@ -4,7 +4,7 @@
 * Copyright (c) 2022 Tanish.
 */
 
-#if defined(SIMD_ALLOCATE_ERROR_MESSAGE)
+#if defined(CV_SIMD_ALLOCATE_ERROR_MESSAGE)
 #include <iostream>
 #endif
 
@@ -57,8 +57,8 @@ namespace Simd {
     }
 
     CV_INLINE void *Allocate(size_t size, size_t align = CV_SIMD_ALIGN) {
-#ifdef SIMD_NO_MANS_LAND
-        size += 2 * SIMD_NO_MANS_LAND;
+#ifdef CV_SIMD_NO_MANS_LAND
+        size += 2 * CV_SIMD_NO_MANS_LAND;
 #endif
         void *ptr = NULL;
 #if defined(_MSC_VER)
@@ -74,17 +74,17 @@ namespace Simd {
 #else
         ptr = malloc(size);
 #endif
-#ifdef SIMD_ALLOCATE_ERROR_MESSAGE
+#ifdef CV_SIMD_ALLOCATE_ERROR_MESSAGE
         if (ptr == NULL)
             std::cout << "The function posix_memalign can't allocate " << size << " bytes with align " << align << " !"
                       << std::endl << std::flush;
 #endif
-#ifdef SIMD_ALLOCATE_ASSERT
+#ifdef CV_SIMD_ALLOCATE_ASSERT
         assert(ptr);
 #endif
-#ifdef SIMD_NO_MANS_LAND
+#ifdef CV_SIMD_NO_MANS_LAND
         if (ptr)
-            ptr = (char *) ptr + SIMD_NO_MANS_LAND;
+            ptr = (char *) ptr + CV_SIMD_NO_MANS_LAND;
 #endif
         return ptr;
     }
@@ -97,9 +97,9 @@ namespace Simd {
     }
 
     CV_INLINE void Free(void *ptr) {
-#ifdef SIMD_NO_MANS_LAND
+#ifdef CV_SIMD_NO_MANS_LAND
         if (ptr)
-            ptr = (char *) ptr - SIMD_NO_MANS_LAND;
+            ptr = (char *) ptr - CV_SIMD_NO_MANS_LAND;
 #endif
 #if defined(_MSC_VER)
         _aligned_free(ptr);

@@ -45,8 +45,10 @@ int main()
 
     Timer timer;
     Image test1("Resources/Lena.png"), test2;
-    std::cout << "Alignment Value: " << CV_SIMD_ALIGN << "\n";
-    std::cout << "Alignment: " << Simd::GetAlignment() << "\n";
+    cv::Rectangle(test1, {100, 100}, {200, 300}, {200, 200}, {100, 200}, {255, 0, 0});
+    test1.write("Resources/Rectangle.png");
+//    std::cout << "Alignment Value: " << CV_SIMD_ALIGN << "\n";
+//    std::cout << "Alignment: " << Simd::GetAlignment() << "\n";
 //    auto a = static_cast<uint8_t*>(Simd::SimdAllocator<uint8_t>::Allocate(test1.size(), CV_SIMD_ALIGN)), b = static_cast<uint8_t*>(Simd::SimdAllocator<uint8_t>::Allocate(test1.size(), CV_SIMD_ALIGN));
 //    Simd::Free(a);
 //    Simd::Free(b);
