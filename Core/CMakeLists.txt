@@ -1,4 +1,4 @@
-project(cv_core)
+project(Core)
 
 add_library(${PROJECT_NAME} Image.cpp Window.cpp include/Image.h include/Window.h)
 add_library(cv::core ALIAS ${PROJECT_NAME})

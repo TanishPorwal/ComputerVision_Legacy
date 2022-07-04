@@ -60,4 +60,5 @@ namespace cv
         Convolve2D(src, dst, gaussian_kernel, kernelX, kernelY);
         delete[] gaussian_kernel;
     }
-}
+
+} // namespace cv

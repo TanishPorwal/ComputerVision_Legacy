@@ -122,10 +122,5 @@ namespace cv
             dst.at(k) = static_cast<uint8_t>(BYTE_BOUND(round(sum)));
         }
     }
-    
-    void Convolve2DFast(Image& src, Image& dst, double* kernel, int kernel_width, int kernel_height)
-    {
-        
-    }
 
 }
