@@ -6,7 +6,7 @@
 #include "stb/stb_image_write.h"
 
 #if defined(_MSC_VER)
-#include "Imgproc/MathConstants.h"
+#include "../Imgproc/MathConstants.h"
 #endif
 
 #include "SimdAllocator.h"

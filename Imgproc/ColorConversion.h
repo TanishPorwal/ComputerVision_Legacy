@@ -137,9 +137,9 @@ namespace cv
             double V = 0.713*(R-Y);
 
             //truncate value exceed the range, it seems we can use a better normalization method?
-            Y = std::min(std::max((int)Y, 0), 255); 
-            U = std::min(std::max((int)U, 0), 255); 
-            V = std::min(std::max((int)V, 0), 255);
+            Y = std::min(std::max(static_cast<int>(Y), 0), 255);
+            U = std::min(std::max(static_cast<int>(U), 0), 255);
+            V = std::min(std::max(static_cast<int>(V), 0), 255);
 
             dst.at(i) = static_cast<uint8_t>(Y);
             dst.at(i+1) = static_cast<uint8_t>(U);

@@ -15,8 +15,6 @@
 
 #include "Imgproc/DrawShapes.h"
 
-#include "SimdAllocator.h"
-
 int main()
 {
 //    double emboss[9] = { -2,  -1,  0,
@@ -44,9 +42,9 @@ int main()
 //                         1/9.0, 1/9.0, 1/9.0};
 
     Timer timer;
-    Image test1("Resources/Lena.png"), test2;
-    cv::canny(test1, test2, 100, 200);
-    test1.write("Resources/Lena_canny.png");
+    Image test1("../Resources/Sword.png"), test2;
+    cv::Sobel(test1, test2);
+    test2.write("../Resources/Sword_sobel.png");
 //    std::cout << "Alignment Value: " << CV_SIMD_ALIGN << "\n";
 //    std::cout << "Alignment: " << Simd::GetAlignment() << "\n";
 //    auto a = static_cast<uint8_t*>(Simd::SimdAllocator<uint8_t>::Allocate(test1.size(), CV_SIMD_ALIGN)), b = static_cast<uint8_t*>(Simd::SimdAllocator<uint8_t>::Allocate(test1.size(), CV_SIMD_ALIGN));

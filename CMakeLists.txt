@@ -14,9 +14,9 @@ add_executable(${PROJECT_NAME} main.cpp)
 
 target_link_libraries(${PROJECT_NAME} cv::core cv::imgproc cv::simd)
 if (UNIX)
-target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/3rdParty/GLFW/lib/libgl3w_d.a)
+#target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/3rdParty/GLFW/lib/libgl3w.a)
 target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/3rdParty/GLFW/lib/libglfw3_d.a)
-target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/3rdParty/imgui/lib/libimgui_d.a)
+target_link_libraries(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/3rdParty/imgui/lib/libimgui.a)
 target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
 endif (UNIX)
 

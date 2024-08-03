@@ -108,8 +108,6 @@ typedef unsigned __int64  uint64_t;
 #define CV_SIMD_CPP_2017_ENABLE
 #endif
 
-#define CV_SIMD_FUNCTION __FUNCTION__
-
 #elif defined(__GNUC__)
 
 #define CV_SIMD_ALIGNED(x) __attribute__ ((aligned(x)))

@@ -31,7 +31,9 @@
 #ifndef __gl3w_h_
 #define __gl3w_h_
 
+#if defined(UNIX)
 #include <GL/glcorearb.h>
+
 
 #ifndef GL3W_API
     #define GL3W_API
@@ -1392,4 +1394,5 @@ GL3W_API extern union GL3WProcs gl3wProcs;
 }
 #endif
 
+#endif
 #endif

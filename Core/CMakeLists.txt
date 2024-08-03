@@ -9,7 +9,6 @@ message(STATUS "X11_FOUND = ${X11_FOUND}")
 target_include_directories(${PROJECT_NAME} PUBLIC ${X11_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${X11_LIBRARIES})
 
-
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 target_include_directories(${PROJECT_NAME} PUBLIC ${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} )

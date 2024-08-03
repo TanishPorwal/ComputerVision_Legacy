@@ -6,7 +6,7 @@
 
 namespace cv
 {
-    void Sobel(Image& src, Image& dst)
+    inline void Sobel(Image& src, Image& dst)
     {
         if(src.height() != dst.height() || src.width() != dst.width() || src.channels() != dst.channels())
             dst.allocate(src.width(), src.height(), src.channels());
